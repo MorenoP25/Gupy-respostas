@@ -1,0 +1,60 @@
+1) o resultado da soma será 91, pois é basicamente fazer a soma dos numeros até 13, sendo assim ( 1+2+3+4+5+6+7+8+9+10+11+12+13=91).
+
+2) def pertence_fibonacci(num):
+    a, b = 2, 2
+    while a < num:
+        a, b = b, a + b
+    return a == num
+
+numero = int(input("Informe um número: "))
+if pertence_fibonacci(numero):
+    print(f"O número {numero} pertence à sequência de Fibonacci.")
+else:
+    print(f"O número {numero} não pertence à sequência de Fibonacci.")
+
+3) supondo que o valores de Json seja (1000, 2000, 1500, 3000, 0, 4000, 2500, 0, 0, 5000, 6000)
+import json
+
+dados_json = '''
+{
+    "faturamento": [1000, 2000, 1500, 3000, 0, 4000, 2500, 0, 0, 5000, 6000]
+}
+'''
+
+dados = json.loads(dados_json)
+faturamento = dados['faturamento']
+
+# Filtrando dias com faturamento
+dias_validos = [valor for valor in faturamento if valor > 0]
+media = sum(dias_validos) / len(dias_validos) if dias_validos else 0
+menor = min(dias_validos) if dias_validos else 0
+maior = max(dias_validos) if dias_validos else 0
+dias_acima_media = len([dia for dia in dias_validos if dia > media])
+
+print(f"Menor faturamento: R${menor:.2f}")
+print(f"Maior faturamento: R${maior:.2f}")
+print(f"Número de dias acima da média: {dias_acima_media}")
+
+4) faturamento_estados = {
+    "SP": 67836.43,
+    "RJ": 36678.66,
+    "MG": 29229.88,
+    "ES": 27165.48,
+    "Outros": 19849.53
+}
+
+total_faturamento = sum(faturamento_estados.values())
+
+percentuais = {estado: (valor / total_faturamento) * 100 for estado, valor in faturamento_estados.items()}
+
+for estado, percentual in percentuais.items():
+    print(f"{estado}: {percentual:.2f}%")
+
+5)def inverter_string(s):
+    invertida = ""
+    for char in s:
+        invertida = char + invertida
+    return invertida
+
+string = input("Informe uma string: ")
+print(f"String invertida: {inverter_string(string)}")
